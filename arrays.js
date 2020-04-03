@@ -18,8 +18,7 @@
 */
 
 function fridgeContains(fridge, item) {
-    // Your code here.  Check if the item is in the fridge, return true or false.
-    return false;
+    return fridge.includes(item);       
 }
 
 /* 
@@ -46,7 +45,9 @@ console.log(!fridgeContains(fridge, "eggplant"));
 */
 
 function putItemIntoFridge(fridge, item) {
-    // Your code here.
+    if(fridge.includes(item) === false){
+        fridge.push(item)
+    }
 }
 
 /* 
@@ -77,7 +78,9 @@ console.log(fridge2.length == previousLength + 1 && fridge2.includes("kale"));
 */
 
 function getItemFromFridge(fridge, item) {
-    // Your code here.
+    let itemNumber = fridge.indexOf(item);
+    fridge.splice(itemNumber, 1);
+    return null;
 }
 
 /* 
@@ -88,8 +91,8 @@ console.log("-----Tests for Exercise Three-----");
 let fridge3 = ["milk", "cheese", "eggs", "broccoli", "spinach", "chicken", "leftovers"];
 console.log("* Get the cheese");
 let lengthBeforeGettingMilk = fridge3.length;
-let milk = getItemFromFridge(fridge3, "milk")
-console.log(milk == "milk" && fridge3.length == lengthBeforeGettingMilk - 1 && !fridge3.includes("milk"));
+let cheese = getItemFromFridge(fridge3, "cheese")
+console.log(cheese == "cheese" && fridge3.length == lengthBeforeGettingMilk - 1 && !fridge3.includes("cheese"));
 
 console.log("* Get missing item");
 let lengthBeforeMissingItem = fridge3.length;
@@ -197,8 +200,8 @@ let newFridge = [["egg", "egg", "egg", "egg"], ["butter"], ["milk"], ["cheese", 
 console.log("* Get a cheese");
 let lengthBeforeGettingCheese = newFridge.length;
 let cheeseArrayLengthBeforeGettingCheese = newFridge[3].length;
-let cheese = getItemFromNewFridge(newFridge, "cheese");
-console.log(cheese == "cheese" && newFridge.length == lengthBeforeGettingCheese && newFridge[3].length == cheeseArrayLengthBeforeGettingCheese - 1);
+let lastCheese = getItemFromNewFridge(newFridge, "cheese");
+console.log(lastCheese == "cheese" && newFridge.length == lengthBeforeGettingCheese && newFridge[3].length == cheeseArrayLengthBeforeGettingCheese - 1);
 
 console.log("* Get the last milk");
 let lengthBeforeGettingLastMilk = newFridge.length;
