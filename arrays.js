@@ -79,8 +79,15 @@ console.log(fridge2.length == previousLength + 1 && fridge2.includes("kale"));
 
 function getItemFromFridge(fridge, item) {
     let itemNumber = fridge.indexOf(item);
+
+    if(fridge.includes(item)){
     fridge.splice(itemNumber, 1);
-    return null;
+    return item; 
+    } else {
+    return null;    
+    }
+    
+    
 }
 
 /* 
@@ -172,7 +179,20 @@ function getIndexOfItem(fridge, item) {
     If the item isn't in the fridge, return null.
 */
 function getItemFromNewFridge(fridge, item) {
-    // Your code here.
+    
+    const itemNumber = getIndexOfItem(fridge, item);
+    
+    if(itemNumber !== -1){
+    fridge[itemNumber].pop();
+        if(fridge[itemNumber].length === 0){
+            fridge.splice(itemNumber, 1);
+        }
+    return item;
+    } else {
+        return null;
+    }
+
+    
 }
 
 /*
@@ -182,7 +202,13 @@ function getItemFromNewFridge(fridge, item) {
     Otherwise, create a new array in the fridge and put this item in it.
 */
 function putItemInNewFridge(fridge, item) {
-    // Your code here.
+    const itemIndex = getIndexOfItem(fridge, item);
+    if (itemIndex !==-1) {
+        fridge[itemIndex].push(item);
+    } else {
+        fridge.push([item])
+    }
+    
 }
 
 
