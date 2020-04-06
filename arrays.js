@@ -90,6 +90,7 @@ function getItemFromFridge(fridge, item) {
     
 }
 
+// hello
 /* 
    -------TESTS---------------------------------------------------------------
    Run these commands to make sure you did it right. They should all be true.
