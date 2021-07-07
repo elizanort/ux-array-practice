@@ -18,8 +18,7 @@
 */
 
 function fridgeContains(fridge, item) {
-    // Your code here.  Check if the item is in the fridge, return true or false.
-    return false;
+    return fridge.includes(item);       
 }
 
 /* 
@@ -46,7 +45,9 @@ console.log(!fridgeContains(fridge, "eggplant"));
 */
 
 function putItemIntoFridge(fridge, item) {
-    // Your code here.
+    if(fridge.includes(item) === false){
+        fridge.push(item)
+    }
 }
 
 /* 
@@ -77,9 +78,19 @@ console.log(fridge2.length == previousLength + 1 && fridge2.includes("kale"));
 */
 
 function getItemFromFridge(fridge, item) {
-    // Your code here.
+    let itemNumber = fridge.indexOf(item);
+
+    if(fridge.includes(item)){
+    fridge.splice(itemNumber, 1);
+    return item; 
+    } else {
+    return null;    
+    }
+    
+    
 }
 
+// hello
 /* 
    -------TESTS---------------------------------------------------------------
    Run these commands to make sure you did it right. They should all be true.
@@ -88,8 +99,8 @@ console.log("-----Tests for Exercise Three-----");
 let fridge3 = ["milk", "cheese", "eggs", "broccoli", "spinach", "chicken", "leftovers"];
 console.log("* Get the cheese");
 let lengthBeforeGettingMilk = fridge3.length;
-let milk = getItemFromFridge(fridge3, "milk")
-console.log(milk == "milk" && fridge3.length == lengthBeforeGettingMilk - 1 && !fridge3.includes("milk"));
+let cheese = getItemFromFridge(fridge3, "cheese")
+console.log(cheese == "cheese" && fridge3.length == lengthBeforeGettingMilk - 1 && !fridge3.includes("cheese"));
 
 console.log("* Get missing item");
 let lengthBeforeMissingItem = fridge3.length;
@@ -169,7 +180,20 @@ function getIndexOfItem(fridge, item) {
     If the item isn't in the fridge, return null.
 */
 function getItemFromNewFridge(fridge, item) {
-    // Your code here.
+    
+    const itemNumber = getIndexOfItem(fridge, item);
+    
+    if(itemNumber !== -1){
+    fridge[itemNumber].pop();
+        if(fridge[itemNumber].length === 0){
+            fridge.splice(itemNumber, 1);
+        }
+    return item;
+    } else {
+        return null;
+    }
+
+    
 }
 
 /*
@@ -179,7 +203,13 @@ function getItemFromNewFridge(fridge, item) {
     Otherwise, create a new array in the fridge and put this item in it.
 */
 function putItemInNewFridge(fridge, item) {
-    // Your code here.
+    const itemIndex = getIndexOfItem(fridge, item);
+    if (itemIndex !==-1) {
+        fridge[itemIndex].push(item);
+    } else {
+        fridge.push([item])
+    }
+    
 }
 
 
@@ -197,8 +227,8 @@ let newFridge = [["egg", "egg", "egg", "egg"], ["butter"], ["milk"], ["cheese", 
 console.log("* Get a cheese");
 let lengthBeforeGettingCheese = newFridge.length;
 let cheeseArrayLengthBeforeGettingCheese = newFridge[3].length;
-let cheese = getItemFromNewFridge(newFridge, "cheese");
-console.log(cheese == "cheese" && newFridge.length == lengthBeforeGettingCheese && newFridge[3].length == cheeseArrayLengthBeforeGettingCheese - 1);
+let lastCheese = getItemFromNewFridge(newFridge, "cheese");
+console.log(lastCheese == "cheese" && newFridge.length == lengthBeforeGettingCheese && newFridge[3].length == cheeseArrayLengthBeforeGettingCheese - 1);
 
 console.log("* Get the last milk");
 let lengthBeforeGettingLastMilk = newFridge.length;
